@@ -8,17 +8,25 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.thiagoiplinsky.cursomc.domain.Categoria;
+import com.thiagoiplinsky.cursomc.domain.Cidade;
+import com.thiagoiplinsky.cursomc.domain.Estado;
 import com.thiagoiplinsky.cursomc.domain.Produto;
 import com.thiagoiplinsky.cursomc.resource.repositories.CategoriaRepository;
+import com.thiagoiplinsky.cursomc.resource.repositories.CidadeRepository;
+import com.thiagoiplinsky.cursomc.resource.repositories.EstadoRepository;
 import com.thiagoiplinsky.cursomc.resource.repositories.ProdutoRepository;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
 	
 	@Autowired
-	CategoriaRepository categoriaRepository;
+	private CategoriaRepository categoriaRepository;
 	@Autowired
-	ProdutoRepository produtoRepository;
+	private ProdutoRepository produtoRepository;
+	@Autowired
+	private EstadoRepository estadoRepositoy;
+	@Autowired
+	private CidadeRepository cidadeRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -39,10 +47,23 @@ public class CursomcApplication implements CommandLineRunner {
 		
 		p1.getCategorias().addAll(Arrays.asList(cat1));
 		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
-		p3.getCategorias().addAll((Arrays.asList(cat1)));
+		p3.getCategorias().addAll((Arrays.asList(cat1)));	
 		
 		categoriaRepository.save(Arrays.asList(cat1, cat2));
 		produtoRepository.save(Arrays.asList(p1, p2, p3));
+		
+		Estado est1 = new Estado(null, "Minas Gerais");
+		Estado est2 = new Estado(null, "São Paulo");
+		
+		Cidade c1 = new Cidade(null, "Uberlândia", est1);
+		Cidade c2 = new Cidade(null, "São Paulo", est2);
+		Cidade c3 = new Cidade(null, "Campinas", est2);
+		
+		est1.getCidades().addAll(Arrays.asList(c1));
+		est2.getCidades().addAll(Arrays.asList(c2, c3));
+		
+		estadoRepositoy.save(Arrays.asList(est1, est2));
+		cidadeRepository.save(Arrays.asList(c1, c2, c3));	
 		
 	}
 }
