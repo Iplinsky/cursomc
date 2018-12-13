@@ -24,7 +24,7 @@ public class Produto implements Serializable {
 	private String nome;
 	private Double preco;
 	
-	@JsonBackReference
+	@JsonBackReference // Indica que o Produto não pode serializar a categoria - Marcação fica por cima do registro de tabela - 1-1 / 1-N / N-1
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA",
 	joinColumns = @JoinColumn(name = "produto_id"), 
