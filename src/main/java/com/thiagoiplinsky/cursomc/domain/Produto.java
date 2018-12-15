@@ -15,7 +15,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -28,7 +27,7 @@ public class Produto implements Serializable {
 	private String nome;
 	private Double preco;
 	
-	@JsonBackReference // Indica que o Produto não pode serializar a categoria - Marcação fica por cima do registro de tabela - 1-1 / 1-N / N-1
+	@JsonIgnore // Indica que o Produto não pode serializar a categoria - Marcação fica por cima do registro de tabela - 1-1 / 1-N / N-1
 	@ManyToMany
 	@JoinTable(name = "PRODUTO_CATEGORIA",
 	joinColumns = @JoinColumn(name = "produto_id"), 
