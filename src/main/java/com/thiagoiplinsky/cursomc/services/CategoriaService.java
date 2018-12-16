@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.thiagoiplinsky.cursomc.domain.Categoria;
@@ -17,6 +20,8 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
+//	Função utilizada para retornar uma categoria pelo parâmetro (id)
+	
 	public Categoria find(Integer id) {
 		Categoria obj = repo.findOne(id);
 		if (obj == null) {
@@ -25,19 +30,25 @@ public class CategoriaService {
 		return obj;
 	}
 	
+//	Função utilizada para inserir uma categoria
+	
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return repo.save(obj);
 	}
+	
+//	Função utilizada para atualizar uma categoria
 	
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
 		return repo.save(obj);
 	}
 	
+//	Função utilizada para deletar um item do banco de dados através do parâmetro (id)
+	
 	public void delete(Integer id) {
 		find(id);
-		try {
+		try {				// Tentativa de deleção
 			repo.delete(id);
 		}
 		catch (DataIntegrityViolationException e) {
@@ -46,7 +57,14 @@ public class CategoriaService {
 		
 	}
 	
+//	Função utilizada para retornar todas as categorias 
 	public List<Categoria> findAll() {
 		return repo.findAll();
+	}
+	
+//	Função para retornar uma paginação
+	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+		PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf(direction), orderBy);
+		return repo.findAll(pageRequest);
 	}
 }
