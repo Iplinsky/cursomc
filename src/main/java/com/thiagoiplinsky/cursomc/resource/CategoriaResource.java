@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +39,9 @@ public class CategoriaResource {
 //  Endpoint para incluir um elemento
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public ResponseEntity<Void> insert(@RequestBody Categoria obj) { // RequestBody converte o Json para objeto Java
+	//@Valid -> Validação sintática
+	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto) { // RequestBody converte o Json para objeto Java
+		Categoria obj = service.fromDto(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
@@ -45,8 +49,11 @@ public class CategoriaResource {
 	
 //	Endpoint para alterar um elemento
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
+	@RequestMapping(value="/{id}", method=RequestMethod.PUT)	
+	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDto, @PathVariable Integer id) {		
+		// Conversão do Categoria (obj) para (objDto)	
+		
+		Categoria obj = service.fromDto(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
