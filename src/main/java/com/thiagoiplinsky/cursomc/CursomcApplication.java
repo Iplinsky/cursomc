@@ -33,7 +33,7 @@ import com.thiagoiplinsky.cursomc.resource.repositories.ProdutoRepository;
 
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner {
-
+	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	@Autowired
@@ -59,7 +59,9 @@ public class CursomcApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
+		
+		//		Instanciação das Categorias *********************
+		
 		Categoria cat1 = new Categoria(null, "Informatica");
 		Categoria cat2 = new Categoria(null, "Escritorio");
 		Categoria cat3 = new Categoria(null, "Cama mesa e banho");
@@ -67,6 +69,8 @@ public class CursomcApplication implements CommandLineRunner {
 		Categoria cat5 = new Categoria(null, "Jardinagem");
 		Categoria cat6 = new Categoria(null, "Decoração");
 		Categoria cat7 = new Categoria(null, "Perfumaria");
+
+		//		Instanciação dos Produtos *********************
 
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 800.00);
@@ -81,9 +85,13 @@ public class CursomcApplication implements CommandLineRunner {
 
 		categoriaRepository.save(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
 		produtoRepository.save(Arrays.asList(p1, p2, p3));
+		
+		//		Instanciação dos Estados *********************
 
 		Estado est1 = new Estado(null, "Minas Gerais");
 		Estado est2 = new Estado(null, "São Paulo");
+
+		//		Instanciação das Cidades *********************
 
 		Cidade c1 = new Cidade(null, "Uberlândia", est1);
 		Cidade c2 = new Cidade(null, "São Paulo", est2);
@@ -94,10 +102,14 @@ public class CursomcApplication implements CommandLineRunner {
 
 		estadoRepositoy.save(Arrays.asList(est1, est2));
 		cidadeRepository.save(Arrays.asList(c1, c2, c3));
+		
+		//		Instanciação dos Clientes *********************
 
 		Cliente cli1 = new Cliente(null, "Thiago Iplinsky", "thiago.iplinsky19@hotmail.com", "36378912377", TipoCliente.PESSOA_FISICA);
 
 		cli1.getTelefones().addAll(Arrays.asList("34996956095", "998412458"));
+		
+		//		Instanciação dos endereços *********************
 
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38220834", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
@@ -112,6 +124,8 @@ public class CursomcApplication implements CommandLineRunner {
 		Pedido ped1 = new Pedido(null, sdf.parse("13/12/2018 20:45"), cli1, e1);
 		Pedido ped2 = new Pedido(null, sdf.parse("15/10/2018 15:13"), cli1, e2);
 		
+		//		Instanciação das Formas de Pagamento *********************
+		
 		Pagamento pagto1 = new PagamentoComCartao(null, EstadoPagamento.QUITADO, ped1, 6);
 		ped1.setPagamento(pagto1);
 		
@@ -123,6 +137,8 @@ public class CursomcApplication implements CommandLineRunner {
 		pedidoRepository.save(Arrays.asList(ped1, ped2));
 		pagamentoRepository.save(Arrays.asList(pagto1, pagto2));
 		
+		//		Instanciação dos Itens do Pedido *********************
+
 		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
 		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
 		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);

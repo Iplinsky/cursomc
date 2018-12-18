@@ -39,7 +39,8 @@ public class CategoriaResource {
 //  Endpoint para incluir um elemento
 	
 	@RequestMapping(method=RequestMethod.POST)
-	//@Valid -> Validação sintática
+	//@Valid -> Validação sintática com Bean Validation
+	
 	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto) { // RequestBody converte o Json para objeto Java
 		Categoria obj = service.fromDto(objDto);
 		obj = service.insert(obj);

@@ -2,6 +2,9 @@ package com.thiagoiplinsky.cursomc.resources.exceptions;
 
 import java.io.Serializable;
 
+// Erro padrão personalizado
+// Tipo auxiliar
+
 public class StandardError implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
