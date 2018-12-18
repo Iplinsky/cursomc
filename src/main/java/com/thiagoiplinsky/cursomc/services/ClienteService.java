@@ -29,7 +29,7 @@ public class ClienteService {
 		return obj;
 	}
 	
-//	Função utilizada para atualizar uma categoria
+//	Função utilizada para atualizar um Cliente
 	
 	public Cliente update(Cliente obj) {
 		Cliente newObj = find(obj.getId());
@@ -51,7 +51,7 @@ public class ClienteService {
 		
 	}
 	
-//	Função utilizada para retornar todas as categorias 
+//	Função utilizada para retornar todos os Clientes 
 	public List<Cliente> findAll() {
 		return repo.findAll();
 	}

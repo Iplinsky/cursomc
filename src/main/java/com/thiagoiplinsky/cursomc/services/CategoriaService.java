@@ -41,8 +41,10 @@ public class CategoriaService {
 //	Função utilizada para atualizar uma categoria
 	
 	public Categoria update(Categoria obj) {
-		find(obj.getId());
-		return repo.save(obj);
+		Categoria newObj = find(obj.getId());
+		//método auxiliar para salvar os dados do (newObj) com base no (obj)
+		updateData(newObj, obj);		
+		return repo.save(newObj);
 	}
 	
 //	Função utilizada para deletar um item do banco de dados através do parâmetro (id)
@@ -71,5 +73,9 @@ public class CategoriaService {
 	
 	public Categoria fromDto(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
+	}
+	
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
 	}
 }
