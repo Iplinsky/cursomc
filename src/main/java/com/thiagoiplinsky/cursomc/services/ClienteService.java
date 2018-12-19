@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.thiagoiplinsky.cursomc.domain.Cidade;
 import com.thiagoiplinsky.cursomc.domain.Cliente;
@@ -15,7 +16,6 @@ import com.thiagoiplinsky.cursomc.domain.Endereco;
 import com.thiagoiplinsky.cursomc.domain.enums.TipoCliente;
 import com.thiagoiplinsky.cursomc.dto.ClienteDTO;
 import com.thiagoiplinsky.cursomc.dto.ClienteNewDTO;
-import com.thiagoiplinsky.cursomc.resource.repositories.CidadeRepository;
 import com.thiagoiplinsky.cursomc.resource.repositories.ClienteRepository;
 import com.thiagoiplinsky.cursomc.resource.repositories.EnderecoRepository;
 import com.thiagoiplinsky.cursomc.services.exceptions.DataIntegrityException;
@@ -26,10 +26,7 @@ public class ClienteService {
 	
 	@Autowired
 	private ClienteRepository repo;
-	
-	@Autowired
-	private CidadeRepository cidadeRepository;
-	
+		
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 	
@@ -41,6 +38,7 @@ public class ClienteService {
 		return obj;
 	}
 	
+	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
 		obj = repo.save(obj);
@@ -65,7 +63,7 @@ public class ClienteService {
 			repo.delete(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir porque há entidades relacionadas.");
+			throw new DataIntegrityException("Não é possível excluir porque há pedido relacionados.");
 		}
 	}
 	
@@ -86,9 +84,7 @@ public class ClienteService {
 	
 	public Cliente fromDTO(ClienteNewDTO objDto) {												//  Conversão do numero inteiro para tipo Cliente					
 		Cliente cli = new Cliente(null, objDto.getNome(), objDto.getEmail(), objDto.getCpfOuCnpj(), TipoCliente.toEnum(objDto.getTipo()));
-		 
-		// Objeto cidade persistente -- monitorado pelo JPA
-		Cidade cid = cidadeRepository.findOne(objDto.getCidadeId());
+		Cidade cid = new Cidade(objDto.getCidadeId(), null, null);
 		Endereco end = new Endereco(null, objDto.getLogradouro(), objDto.getNumero(), objDto.getComplemento(), objDto.getBairro(), objDto.getCep(), cli, cid);
 		
 		// Relacionando os dados do cliente com o endereço e telefone
