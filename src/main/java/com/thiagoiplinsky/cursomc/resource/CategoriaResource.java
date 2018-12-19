@@ -42,7 +42,7 @@ public class CategoriaResource {
 	//@Valid -> Validação sintática com Bean Validation
 	
 	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto) { // RequestBody converte o Json para objeto Java
-		Categoria obj = service.fromDto(objDto);
+		Categoria obj = service.fromDTO(objDto);
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
@@ -54,7 +54,7 @@ public class CategoriaResource {
 	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDto, @PathVariable Integer id) {		
 		// Conversão do Categoria (obj) para (objDto)	
 		
-		Categoria obj = service.fromDto(objDto);
+		Categoria obj = service.fromDTO(objDto);
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
