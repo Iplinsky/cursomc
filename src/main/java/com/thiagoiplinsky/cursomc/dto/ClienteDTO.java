@@ -7,7 +7,10 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.thiagoiplinsky.cursomc.domain.Cliente;
+import com.thiagoiplinsky.cursomc.services.validation.ClienteUpdate;
 
+// Anotação de validação customizada que valida uma atualização do cliente
+@ClienteUpdate
 public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

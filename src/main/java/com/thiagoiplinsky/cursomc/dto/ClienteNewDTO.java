@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.thiagoiplinsky.cursomc.services.validation.ClienteInsert;
 
+//Anotação de validação customizada que valida uma inserção de cliente
 @ClienteInsert
 public class ClienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
