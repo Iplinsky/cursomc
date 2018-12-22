@@ -2,7 +2,7 @@ package com.thiagoiplinsky.cursomc.domain;
 
 import javax.persistence.Entity;
 
-import com.couchbase.client.deps.com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.thiagoiplinsky.cursomc.domain.enums.EstadoPagamento;
 
 @Entity
