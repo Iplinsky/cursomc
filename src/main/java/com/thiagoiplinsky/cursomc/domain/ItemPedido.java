@@ -29,8 +29,15 @@ public class ItemPedido implements Serializable {
 		this.quantidade = quantidade;
 		this.preco = preco;
 	}
+
+//	Todo método que possui get em sua estrutura é reconhecido pelo Json e serializado.
 	
-	@JsonIgnore    // Todo item que possuir 'get' é serializado.
+	public double getSubTotal() {
+		return (preco -desconto) * quantidade;
+	}
+	
+//	Anotação indicando que o método contendo get em sua estrutura deve ser ignorado na serialização Json
+	@JsonIgnore    
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
