@@ -32,6 +32,8 @@ public class PedidoService {
 	private ItemPedidoRepository itemPedidoRepository;
 	@Autowired
 	private ClienteRepository clienteRepository;
+	@Autowired
+	private EmailService emailService;
 
 	public Pedido find(Integer id) {
 		Pedido obj = repo.findOne(id);
@@ -61,7 +63,7 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.save(obj.getItens());
-		System.out.println(obj);  // Impressão do pedido acionando o método toString
+		emailService.sendOrderConfirmationEmail(obj);// Impressão do pedido acionando o método toString
 		return obj;
 	}
 }
