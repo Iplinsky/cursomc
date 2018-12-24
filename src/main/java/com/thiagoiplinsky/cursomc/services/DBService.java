@@ -31,6 +31,7 @@ import com.thiagoiplinsky.cursomc.resource.repositories.PedidoRepository;
 import com.thiagoiplinsky.cursomc.resource.repositories.ProdutoRepository;
 
 // Classe responsável por instanciar um banco de dados de teste
+
 @Service
 public class DBService {
 
@@ -53,7 +54,7 @@ public class DBService {
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
 
-	public void instantiateTestDatabase() throws ParseException {
+	public void instantiateDatabase() throws ParseException {
 
 		// Instanciação das Categorias *********************
 
@@ -117,7 +118,8 @@ public class DBService {
 
 		// Instanciação dos Clientes *********************
 
-		Cliente cli1 = new Cliente(null, "Thiago Iplinsky", "thiago.iplinsky19@hotmail.com", "36378912377",	TipoCliente.PESSOA_FISICA);
+		Cliente cli1 = new Cliente(null, "Thiago Iplinsky", "thiago.iplinsky19@hotmail.com", "36378912377",
+				TipoCliente.PESSOA_FISICA);
 
 		cli1.getTelefones().addAll(Arrays.asList("34996956095", "998412458"));
 

@@ -20,14 +20,14 @@ public class DevConfig {
 //	Captura o valor da chave _application-dev-propeties_ 
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String strategy;
-	
+
 	@Bean
 	public boolean instantiateDatabase() throws ParseException {
-		
-		if(!"create".equals(strategy)) {
+
+		if (!"create".equals(strategy)) {
 			return false;
 		}
-		dbService.instantiateTestDatabase();
+		dbService.instantiateDatabase();
 		return true;
 	}
 }
