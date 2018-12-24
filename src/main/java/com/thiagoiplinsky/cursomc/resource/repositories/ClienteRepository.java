@@ -11,6 +11,6 @@ public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
 	
 //	Método que busca no banco de dados um cliente passando uma (String Email) como parâmetro de busca
 	
-	@Transactional(readOnly=true) // readOnly -> Anotação que indica que o método não necessita ser envolvida com uma transação de banco de dados
+	@Transactional(readOnly=true) // readOnly -> Anotação indica que não é necessário o método ser envolvido com uma transação de banco de dados
 	Cliente findByEmail(String email);
 }
