@@ -118,8 +118,7 @@ public class DBService {
 
 		// Instanciação dos Clientes *********************
 
-		Cliente cli1 = new Cliente(null, "Thiago Iplinsky", "thiago.iplinsky19@hotmail.com", "36378912377",
-				TipoCliente.PESSOA_FISICA);
+		Cliente cli1 = new Cliente(null, "Ana Izabel Mendes Iplinsky", "thiagoiplinsky@gmail.com", "36378912377", TipoCliente.PESSOA_FISICA);
 
 		cli1.getTelefones().addAll(Arrays.asList("34996956095", "998412458"));
 
