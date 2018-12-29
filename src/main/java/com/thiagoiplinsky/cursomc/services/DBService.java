@@ -20,6 +20,7 @@ import com.thiagoiplinsky.cursomc.domain.PagamentoComCartao;
 import com.thiagoiplinsky.cursomc.domain.Pedido;
 import com.thiagoiplinsky.cursomc.domain.Produto;
 import com.thiagoiplinsky.cursomc.domain.enums.EstadoPagamento;
+import com.thiagoiplinsky.cursomc.domain.enums.Perfil;
 import com.thiagoiplinsky.cursomc.domain.enums.TipoCliente;
 import com.thiagoiplinsky.cursomc.resource.repositories.CategoriaRepository;
 import com.thiagoiplinsky.cursomc.resource.repositories.CidadeRepository;
@@ -122,19 +123,25 @@ public class DBService {
 
 		// Instanciação dos Clientes *********************
 
-		Cliente cli1 = new Cliente(null, "Ana Izabel Mendes Iplinsky", "thiagoiplinsky@gmail.com", "36378912377", TipoCliente.PESSOA_FISICA, pe.encode("123"));
-
-		cli1.getTelefones().addAll(Arrays.asList("34996956095", "998412458"));
-
+		Cliente cli1 = new Cliente(null, "Thiago de Oliveira Iplinsky", "thiagoiplinsky@gmail.com", "90172005027", TipoCliente.PESSOA_FISICA, pe.encode("123"));
+		cli1.getTelefones().addAll(Arrays.asList("995362741", "996538821"));
+		cli1.addPerfil(Perfil.ADMIN);
+		
+		Cliente cli2 = new Cliente(null, "Ana Izabel Mendes Iplinsky", "anaiplinsky@gmail.com", "36378912377", TipoCliente.PESSOA_FISICA, pe.encode("123"));
+		cli2.getTelefones().addAll(Arrays.asList("34996956095", "998412458"));
+		
+		
 		// Instanciação dos endereços *********************
 
 		Endereco e1 = new Endereco(null, "Rua Flores", "300", "Apto 303", "Jardim", "38220834", cli1, c1);
 		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
+		Endereco e3 = new Endereco(null, "Avenida Floriano", "2105", "545", "Centro", "38777021", cli2, c1);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
-
-		clienteRepository.save(Arrays.asList(cli1));
-		enderecoRepository.save(Arrays.asList(e1, e2));
+		cli2.getEnderecos().addAll(Arrays.asList(e3));
+		
+		clienteRepository.save(Arrays.asList(cli1, cli2));
+		enderecoRepository.save(Arrays.asList(e1, e2, e3));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 

@@ -17,7 +17,7 @@ import com.thiagoiplinsky.cursomc.resource.utils.URL;
 import com.thiagoiplinsky.cursomc.services.ProdutoService;
 
 @RestController
-@RequestMapping(value = "/produtos")
+@RequestMapping(value="/produtos")
 public class ProdutoResource {
 
 	@Autowired

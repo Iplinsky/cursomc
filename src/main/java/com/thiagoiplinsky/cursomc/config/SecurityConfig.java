@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final String[] PUBLIC_MATCHERS = { "h2-console/**" };
 
 //	Ao utilizar o GET para produtos, é necessário passar um parâmetro para indicar de qual categoria serão exibidos os produtos
-	private static final String[] PUBLIC_MATCHERS_GET = { "/produtos/**", "/categorias/**" };
+	private static final String[] PUBLIC_MATCHERS_GET = { "/produtos/**", "/categorias/**", "/clientes/**" };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
