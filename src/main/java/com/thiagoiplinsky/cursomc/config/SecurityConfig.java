@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -24,6 +25,7 @@ import com.thiagoiplinsky.cursomc.security.JWTUtil;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true) // Anotação que permite uma restrição de endpoints por perfis seguidos de outra anotação: @PreAuthorize("hasAnyRole('ADMIN')")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
@@ -38,8 +40,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //	Método que indica quais os caminhos serão liberados para acesso
 	private static final String[] PUBLIC_MATCHERS = { "h2-console/**" };
 
-//	Ao utilizar o GET para produtos, é necessário passar um parâmetro para indicar de qual categoria serão exibidos os produtos
 	private static final String[] PUBLIC_MATCHERS_GET = { "/produtos/**", "/categorias/**", "/clientes/**" };
+
+	private static final String[] PUBLIC_MATCHERS_POST = { "/clientes/**" };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -51,9 +54,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		Desabilita a proteção à CSRF ____ // O método cors é acionado caso haja um método CorsConfigurationSource na classe
 		http.cors().and().csrf().disable(); 
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll() // indica que os itens na lista PUBLIC_MATCHERS_GET serão apenas resgatados com o GET e não poderão ser alterados.
-		.antMatchers(PUBLIC_MATCHERS).permitAll()
-		.anyRequest().authenticated();
+			.antMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).permitAll()
+			.antMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll() // indica que os itens na lista PUBLIC_MATCHERS_GET serão apenas resgatados com o GET e não poderão ser alterados.
+			.antMatchers(PUBLIC_MATCHERS).permitAll()
+			.anyRequest().authenticated();
 		http.addFilter(new JWTAuthenticationFilter(authenticationManager(), jwtUtil)); // Método com filtro de autenticação ************
 		http.addFilter(new JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService)); // Método com filtro de autorização ************
 //		configuração que assegura que o backend não vai criar uma sessão de usuário
