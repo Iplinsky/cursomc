@@ -13,7 +13,7 @@ import org.springframework.web.servlet.HandlerMapping;
 
 import com.thiagoiplinsky.cursomc.domain.Cliente;
 import com.thiagoiplinsky.cursomc.dto.ClienteDTO;
-import com.thiagoiplinsky.cursomc.resource.repositories.ClienteRepository;
+import com.thiagoiplinsky.cursomc.repositories.ClienteRepository;
 import com.thiagoiplinsky.cursomc.resources.exceptions.FieldMessage;
  
 //														<nome da anotação e o tipo do dado que aceitará a anotação>

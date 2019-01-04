@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.thiagoiplinsky.cursomc.domain.Categoria;
 import com.thiagoiplinsky.cursomc.dto.CategoriaDTO;
-import com.thiagoiplinsky.cursomc.resource.repositories.CategoriaRepository;
+import com.thiagoiplinsky.cursomc.repositories.CategoriaRepository;
 import com.thiagoiplinsky.cursomc.services.exceptions.DataIntegrityException;
 import com.thiagoiplinsky.cursomc.services.exceptions.ObjectNotFoundException;
 

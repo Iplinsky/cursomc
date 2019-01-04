@@ -1,4 +1,4 @@
-package com.thiagoiplinsky.cursomc.resource.repositories;
+package com.thiagoiplinsky.cursomc.repositories;
 
 import java.util.List;
 

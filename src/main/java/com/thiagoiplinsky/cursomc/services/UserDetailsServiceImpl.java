@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.thiagoiplinsky.cursomc.domain.Cliente;
-import com.thiagoiplinsky.cursomc.resource.repositories.ClienteRepository;
+import com.thiagoiplinsky.cursomc.repositories.ClienteRepository;
 import com.thiagoiplinsky.cursomc.security.UserSS;
 
 @Service

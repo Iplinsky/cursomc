@@ -22,15 +22,15 @@ import com.thiagoiplinsky.cursomc.domain.Produto;
 import com.thiagoiplinsky.cursomc.domain.enums.EstadoPagamento;
 import com.thiagoiplinsky.cursomc.domain.enums.Perfil;
 import com.thiagoiplinsky.cursomc.domain.enums.TipoCliente;
-import com.thiagoiplinsky.cursomc.resource.repositories.CategoriaRepository;
-import com.thiagoiplinsky.cursomc.resource.repositories.CidadeRepository;
-import com.thiagoiplinsky.cursomc.resource.repositories.ClienteRepository;
-import com.thiagoiplinsky.cursomc.resource.repositories.EnderecoRepository;
-import com.thiagoiplinsky.cursomc.resource.repositories.EstadoRepository;
-import com.thiagoiplinsky.cursomc.resource.repositories.ItemPedidoRepository;
-import com.thiagoiplinsky.cursomc.resource.repositories.PagamentoRepository;
-import com.thiagoiplinsky.cursomc.resource.repositories.PedidoRepository;
-import com.thiagoiplinsky.cursomc.resource.repositories.ProdutoRepository;
+import com.thiagoiplinsky.cursomc.repositories.CategoriaRepository;
+import com.thiagoiplinsky.cursomc.repositories.CidadeRepository;
+import com.thiagoiplinsky.cursomc.repositories.ClienteRepository;
+import com.thiagoiplinsky.cursomc.repositories.EnderecoRepository;
+import com.thiagoiplinsky.cursomc.repositories.EstadoRepository;
+import com.thiagoiplinsky.cursomc.repositories.ItemPedidoRepository;
+import com.thiagoiplinsky.cursomc.repositories.PagamentoRepository;
+import com.thiagoiplinsky.cursomc.repositories.PedidoRepository;
+import com.thiagoiplinsky.cursomc.repositories.ProdutoRepository;
 
 // Classe responsável por instanciar um banco de dados de teste
 

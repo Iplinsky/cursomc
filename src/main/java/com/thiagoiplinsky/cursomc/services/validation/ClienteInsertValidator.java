@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.thiagoiplinsky.cursomc.domain.Cliente;
 import com.thiagoiplinsky.cursomc.domain.enums.TipoCliente;
 import com.thiagoiplinsky.cursomc.dto.ClienteNewDTO;
-import com.thiagoiplinsky.cursomc.resource.repositories.ClienteRepository;
+import com.thiagoiplinsky.cursomc.repositories.ClienteRepository;
 import com.thiagoiplinsky.cursomc.resources.exceptions.FieldMessage;
 import com.thiagoiplinsky.cursomc.services.validation.utils.BR;
  

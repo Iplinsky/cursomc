@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.thiagoiplinsky.cursomc.domain.Categoria;
 import com.thiagoiplinsky.cursomc.domain.Produto;
-import com.thiagoiplinsky.cursomc.resource.repositories.CategoriaRepository;
-import com.thiagoiplinsky.cursomc.resource.repositories.ProdutoRepository;
+import com.thiagoiplinsky.cursomc.repositories.CategoriaRepository;
+import com.thiagoiplinsky.cursomc.repositories.ProdutoRepository;
 import com.thiagoiplinsky.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
