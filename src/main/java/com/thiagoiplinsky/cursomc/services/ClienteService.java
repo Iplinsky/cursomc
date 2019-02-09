@@ -56,7 +56,7 @@ public class ClienteService {
 	public Cliente find(Integer id) {
 
 		UserSS user = UserService.authenticated();
-		if (user == null || !user.hasHole(Perfil.ADMIN) && !id.equals(user.getId())) {
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !id.equals(user.getId())) {
 			throw new AuthorizationException("Acesso negado");
 		}
 
@@ -99,6 +99,21 @@ public class ClienteService {
 //	Função utilizada para retornar todos os Clientes 
 	public List<Cliente> findAll() {
 		return repo.findAll();
+	}
+	
+//	Busca o cliente pelo email
+	public Cliente findByEmail(String email) {
+		UserSS user = UserService.authenticated();
+		if (user == null || !user.hasRole(Perfil.ADMIN) && !email.equals(user.getUsername())) {
+			throw new AuthorizationException("Acesso negado");
+		}
+		
+		Cliente obj = repo.findByEmail(email);
+		if (obj == null) {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! ID: " + user.getId() + ", TIPO: " + Cliente.class.getName());
+		}
+		return obj;
 	}
 
 //	Função para retornar uma paginação
